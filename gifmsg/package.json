@@ -1,6 +1,9 @@
 {
   "name": "gifmsg",
   "version": "0.1.0",
+  "engines": {
+    "node": "9.11.1"
+  },
   "private": true,
   "dependencies": {
     "react": "^16.6.0",
