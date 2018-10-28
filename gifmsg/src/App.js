@@ -3,7 +3,7 @@ import './App.css';
 import Messages from "./Messages";
 import Input from "./Input";
 
-//testing deployment
+//testing deployment with package.json
 
 function randomName() {
   const adjectives = [
