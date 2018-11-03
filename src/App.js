@@ -59,12 +59,21 @@ class App extends Component {
       member.id = this.drone.clientId;
       this.setState({member});
     });
-    const room = this.drone.subscribe("observable-room");
+    const room = this.drone.subscribe("observable-room", {
+      historyCount: 15 // ask for the 15 most recent messages from the room's history
+    });
     room.on('data', (data, member) => {
       const messages = this.state.messages;
       messages.push({member, text: data});
       this.setState({messages});
     });
+    // room.on('history_message', (history_message, member) => {
+    //   const messages = this.state.messages;
+    //   messages.push({member, text: history_message});
+    //   this.setState({messages});
+    // });
+    room.on('history_message', message => console.log(message));
+    
   }
 
   render() {
@@ -75,6 +84,7 @@ class App extends Component {
           <h2>Send GIFs and memes to your friends from multiples sources!</h2>
         </div>
         <Messages
+          // message={this.state.message}
           messages={this.state.messages}
           currentMember={this.state.member}
         />
